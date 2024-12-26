@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="zad8.css">
+  <title>Galerija</title>
+  <style>
+    /* Osnovni stilovi za tijelo stranice */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #DFD597;
+      position: relative;
+    }
+
+    /* Naslov */
+    h1 {
+      font-size: 2.5em;
+		font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+      margin-top: 20px;
+      color: #000000;
+      position: relative;
+      padding-left: 150px;
+		margin-left: 100px;
+		 transform: translateX(-50px);/* Pomicanje naslova zbog slike s lijeve strane */
+    }
+
+    /* Transparentna slika Van Gogha uz naslov */
+.van-gogh-img {
+      position: absolute;
+	right: 150px;
+      top: -170px; /* Pomicanje prema gore */
+      width: 450px; /* Povećana veličina slike */
+      height: auto;
+      opacity: 0.7; /* Transparentnost slike */
+      border-radius: 50%;
+    }
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 stupca */
+  grid-template-rows: repeat(4, 1fr);    /* 4 reda */
+  gap: 20px;  /* Razmak između slika */
+  padding: 20px;
+  justify-items: center; /* Poravnanje slika u centar svakog stupca */
+  background-color: rgba(0, 0, 0, 0.2); /* Transparentna pozadina (crna s 20% opaciteta) */
+  border-radius: 10px; /* Zaobljeni kutovi */
+  background-image: url("pozadina.jpg");
+}
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 stupca */
+  grid-template-rows: repeat(4, 1fr);    /* 4 reda */
+  gap: 30px;  /* Povećan razmak između slika */
+  padding: 20px;
+  justify-items: center; /* Poravnanje slika u centar svakog stupca */
+  background-color: rgba(0, 0, 0, 0.3); /* Pozadina sa 30% opaciteta */
+  border-radius: 10px; /* Zaobljeni kutovi */
+  background-image: url("pozadina.jpg");
+  background-size: cover; /* Slika pokriva cijeli kontejner */
+  background-position: center; /* Poravnavanje slike na sredinu */
+}
+
+
+    /* Stiling za svaku sliku */
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer; /* Promjena kursora kada se slika pređe mišem */
+    }
+
+    /* Efekt na hover za slike */
+    .gallery-item img:hover {
+      transform: scale(1.05); /* Povećanje slike pri prelaženju mišem */
+    }
+
+    /* Osiguranje da slike ne prelaze prostor u svom kontejneru */
+    .gallery-item {
+      width: 100%;  /* Svaka slika zauzima cijeli prostor unutar svojih grid ćelija */
+      max-width: 300px;  /* Maksimalna širina slike */
+    }
+
+    /* Lightbox stilovi */
+    .lightbox {
+      display: none; /* Početno sakrivanje lightboxa */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .lightbox .caption {
+      position: absolute;
+      bottom: 20px;
+      color: white;
+      font-size: 1.2em;
+      text-align: center;
+      width: 100%;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1><img src="OIP.png" alt="Van Gogh" class="van-gogh-img">Van Gogh</h1>
+
+  <!-- Lightbox za prikaz slika -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">×</span>
+    <img id="lightbox-image" src="" alt="">
+    <div id="lightbox-caption" class="caption"></div>
+  </div>
+
+  <div class="gallery-container">
+    <div class="gallery-item">
+      <img src="Irises.jpg" alt="Irises by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="almond-blossoms.jpg" alt="Almond Blossoms by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="bedroom.jpg" alt="Van Gogh's Bedroom" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="night_cafe.jpg" alt="The Night Café by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="portrait_mother.jpg" alt="Portrait of Van Gogh's Mother" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="self-portrait.jpg" alt="Self-portrait by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="starrynight.jpg" alt="The Starry Night by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="thepariswheatfield.jpg" alt="The Paradise Wheatfield by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="van_gogh.jpg" alt="Van Gogh Portrait" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="Vase_with_Fifteen_Sunflowers.jpg" alt="Vase with Fifteen Sunflowers by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="starry_night_rhone.jpg" alt="Starry Night over the Rhône by Van Gogh" onclick="openLightbox(this)">
+    </div>
+    <div class="gallery-item">
+      <img src="self-portrait-with-bandaged-ear-and-pipe.jpg" alt="Self-portrait" onclick="openLightbox(this)">
+    </div>
+  </div>
+
+  <script>
+    // Funkcija za otvaranje lightboxa
+    function openLightbox(img) {
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImage = document.getElementById('lightbox-image');
+      var caption = document.getElementById('lightbox-caption');
+      
+      lightbox.style.display = 'flex';
+      lightboxImage.src = img.src;
+      caption.innerHTML = img.alt;
+    }
+
+    // Funkcija za zatvaranje lightboxa
+    function closeLightbox() {
+      var lightbox = document.getElementById('lightbox');
+      lightbox.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

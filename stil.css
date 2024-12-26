@@ -1,0 +1,86 @@
+/* Osnovni stilovi */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #4a00e0, #8e2de2);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Kontejner galerije */
+.gallery-container {
+  text-align: center;
+  max-width: 800px;
+  width: 90%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Galerija */
+.gallery {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.gallery-item {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #6a11cb, #2575fc);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+}
+
+/* Stil za slike */
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  border-radius: 15px;
+}
+
+/* Efekti na hover */
+.gallery-item:hover {
+  transform: translateY(-10px) scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.2) rotate(3deg);
+  filter: brightness(1.2);
+  border: 2px solid #ffffff;
+}
+
+/* Aktivno stanje */
+.gallery-item:active {
+  transform: scale(0.95);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3), 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Medijski upiti za prilagodljiv dizajn */
+@media (max-width: 600px) {
+  .gallery {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .gallery-item {
+    width: 120px;
+    height: 120px;
+  }
+}
